@@ -1,26 +1,27 @@
 <template>
   <div>
-    <div class="frame">
-      <div v-show="a" class="item a">
-        <div class="one-block-little-img">
-          <div class="one zero"></div>
-          <div class="two zero"></div>
+    <div class="header-block">
+      <div class="header-logo-contacts">
+        <div class="header-block__logo">
+          <img src="../assets/images/header__logo_text.jpg" alt="">
         </div>
-        <div>
-          <div class="five zero"></div>
-          <div class="six zero"></div>
-        </div>
-       <div>
-          <div class="seven zero"></div>
-          <div class="eight zero"></div>
-        </div>
-        <div>
-          <div class="three zero"></div>
-          <div class="four zero"></div>
+        <div class="header__front__contacts">
+          <p>Москва <a href="tel: +74953746795">8(495)374-67-95</a></p>
+          <p>Ростов-на-Дону <a href="tel: +78633200167">8(863)320-01-67</a></p>
         </div>
       </div>
-      <div v-show="b" class="item b">
-        <div class="one-block-little-img">
+      <div class="item">
+        <div class="kvadro">
+          <div>
+            <div class="a" ></div>
+            <div class="b" ></div>
+          </div>
+          <div>
+            <div class="c"></div>
+            <div class="d"></div>
+          </div>
+        </div>
+        <div>
           <div class="one zero"></div>
           <div class="two zero"></div>
         </div>
@@ -28,25 +29,7 @@
           <div class="five zero"></div>
           <div class="six zero"></div>
         </div>
-       <div>
-          <div class="seven zero"></div>
-          <div class="eight zero"></div>
-        </div>
         <div>
-          <div class="three zero"></div>
-          <div class="four zero"></div>
-        </div>
-      </div>
-      <div v-show="c" class="item c">
-        <div class="one-block-little-img">
-          <div class="one zero"></div>
-          <div class="two zero"></div>
-        </div>
-        <div>
-          <div class="five zero"></div>
-          <div class="six zero"></div>
-        </div>
-       <div>
           <div class="seven zero"></div>
           <div class="eight zero"></div>
         </div>
@@ -59,82 +42,98 @@
   </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      a: false,
-      b: false,
-      c: false
-    }
-  },
-  mounted () {
-    this.addMedia()
-  },
-  methods: {
-    addMedia () {
-      let i = 0
-      setInterval(() => {
-        if (i === 3) {
-          this.c = false
-          this.a = true
-          i = 1
-          return
-        }
-        if (i === 0) {
-          this.a = true
-        }
-        if (i === 1) {
-          this.a = false
-          this.b = true
-        }
-        if (i === 2) {
-          this.b = false
-          this.c = true
-        }
-        i++
-      }, 7000)
-    }
+<style lang="scss">
+@import "../helpers";
+.header-block {
+  height: 100vh;
+  width: 80vw;
+  margin: auto;
+    @include screen-max(350px){
+    display: none;
+  }
+}
+.header-logo-contacts {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 2vw 0 5vw 0;
+ @include screen-max(1650px) {
+    padding: 1vw 0 1.5vw 0;
+  }
+}
+.header-block__logo {
+  width: 10vw;
+  img {
+    width: 100%;
   }
 }
 
-</script>
-
-<style>
-.frame {
-  width: 80vw;
-  height:50vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin: auto;
+.header__front__contacts {
+  font-family: "SSP";
+  p, a {
+    font-size: 1.3vw;
+    color: #2e00a7;
+  }
+  a {
+    font-weight: 900;
+    text-decoration: none;
+  }
 }
+
 .item {
   display: flex;
   justify-content: space-between;
   width: 80vw;
-  height:40vw;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  transition: transform 2s ease;
-  will-change: transform;
+  height:70vh;
   position: relative;
-  left: -80vw;
+  overflow: hidden;
+   @include screen-max(1750px) {
+      margin: 3vw 0;
+    }
+}
+.kvadro {
+  animation: kvatro 20s infinite;;
+  display: flex;
+  position: absolute;
+  width: 160vw;
+  height:140vh;
+  z-index: -1;
 }
 
 .a {
-  animation: scale-cover 5s;
   background-image: url(../assets/images/1.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 80vw;
+  height:70vh;
+
 }
 .b {
-  animation: scale-cover 5s;
   background-image: url(../assets/images/2.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 80vw;
+  height:70vh;
+
 }
 .c {
-  animation: scale-cover 5s;
-  background-image: url(../assets/images/3.png);
+  background-image: url(../assets/images/2.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 80vw;
+  height:70vh;
+}
+.d {
+  background-image: url(../assets/images/1.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 80vw;
+  height:70vh;
+
 }
 .zero {
   background-position: center center;
@@ -142,80 +141,66 @@ export default {
   background-repeat: no-repeat;
 }
 
-.one-block-little-img {
-  position: relative;
-  left: -20vw;
-  animation: one 5s;
-}
-
 .one {
 background-image: url(../assets/images/4.jpg);
 width: 20vw;
-height:25vw;
+height:50vh;
 }
 .two {
 width: 20vw;
-height:15vw;
+height:20vh;
 background-image: url(../assets/images/5.jpg);
 }
 .three {
 width: 20vw;
-height:15vw;
+height:20vh;
 background-image: url(../assets/images/6.jpg);
 }
 .four {
 width: 20vw;
-height:25vw;
+height:50vh;
 background-image: url(../assets/images/7.png);
 }
 .five {
 width: 20vw;
-height:25vw;
+height:50vh;
 background-image: url(../assets/images/8.png);
 }
 .six {
 width: 20vw;
-height:15vw;
+height:20vh;
 }
 .seven {
 width: 20vw;
-height:25vw;
+height:50vh;
 }
 .eight {
 width: 20vw;
-height:15vw;
+height:20vw;
 background-image: url(../assets/images/road.jpg);
 }
 
-@keyframes scale-cover {
-  0% {
+@keyframes kvatro {
+  20% {
     transform: translateX(0vw);
   }
-  10% {
-    transform: translateX(80vw);
+  25% {
+    transform: translateX(-80vw);
   }
-  90% {
-    transform: translateX(80vw);
+  45% {
+    transform: translateX(-80vw);
   }
-  100% {
-    transform: translateX(0vw);
+  50% {
+    transform: translate(-80vw, -70vh);
   }
-}
-@keyframes one {
-  0% {
-    transform: translateX(0vw);
+  70% {
+    transform: translate(-80vw, -70vh);
   }
-  8% {
-    transform: translateX(0vw);
+  75% {
+    transform: translate(0vw, -70vh);
   }
-  30% {
-    transform: translateX(20vw);
-  }
-  80% {
-    transform: translateX(20vw);
-  }
-  100% {
-    transform: translateX(0vw);
+  95% {
+    transform: translate(0vw, -70vh);
   }
 }
 
